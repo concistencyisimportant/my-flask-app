@@ -1,0 +1,43 @@
+<p>目標カロリー: {{ schedule.calorie }} kcal</p>
+<p>たんぱく質: {{ schedule.protein }}g / 脂質: {{ schedule.fat }}g / 炭水化物: {{ schedule.carb }}g</p>
+<ul>
+{% for meal in schedule.meals %}
+    <li>{{ meal.name }}: {{ meal.menu }}</li>
+{% endfor %}
+</ul>
+<a href="/">戻る</a>
+def generate_diet_plan(sex, height, weight, age, goal):
+    # 基礎代謝計算
+    if sex == "male":
+        bmr = 13.397*weight + 4.799*height - 5.677*age + 88.362
+    else:
+        bmr = 9.247*weight + 3.098*height - 4.330*age + 447.593
+
+    # 総消費カロリーは仮に1.5倍
+    tdee = bmr * 1.5
+
+    # 目標によるカロリーバランス
+    if goal == "macho":
+        calorie = tdee + 400
+        protein = int(weight * 2.0)
+    elif goal == "fitmacho":
+        calorie = tdee + 100
+        protein = int(weight * 1.5)
+    elif goal == "fat":
+        calorie = tdee + 700
+        protein = int(weight * 1.2)
+    else:
+        calorie = tdee
+        protein = int(weight)
+    
+    fat = int((calorie * 0.25) / 9)
+    carb = int((calorie - (protein*4 + fat*9)) / 4)
+
+    # サンプルメニューはご自由に
+    meals = [
+        {"name": "朝食", "menu":"○○○"},
+        {"name": "昼食", "menu":"△△△"},
+        {"name": "夕食", "menu":"□□□"}
+    ]
+    return {"calorie": int(calorie), "protein": protein, "fat": fat, "carb": carb, "meals": meals}
+    
