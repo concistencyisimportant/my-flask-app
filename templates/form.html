@@ -4,77 +4,30 @@
     <meta charset="UTF-8">
     <title>食事プラン計算フォーム</title>
     <style>
-        body {
-            background: #111;
-            color: #fff;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;      /* 上下中央 */
-            justify-content: center;  /* 左右中央 */
-            margin: 0;
-        }
-        .center-form {
-            background: rgba(0,0,0,0.7);
-            padding: 2em 3em;
-            border-radius: 15px;
-            box-shadow: 0 0 24px 8px rgba(0,0,0,0.6);
-            text-align: center;
-        }
-        input, select {
-            background: #222;
-            color: #fff;
-            border: 1px solid #444;
-            border-radius: 4px;
-            margin: 5px;
-            padding: 5px;
-        }
-        input[type="submit"] {
-            background: #28a745;
-            border: 0;
-            color: #fff;
-            padding: 8px 18px;
-            margin-top: 10px;
-            font-weight: bold;
-            font-size: 1em;
-            cursor: pointer;
-        }
-        label, option {
-            color: #fff;
-        }
+        body { background: #000; color:#fff; min-height:100vh; display:flex;align-items:center;justify-content:center;}
+        form { background: #222; padding:2em 3em; border-radius:14px; }
+        label { display:inline-block; width:7em; }
+        input, select { margin-bottom:10px; background:#fff; color:#222;}
+        input[type=submit]{background:#17a2b8;color:#fff;padding:6px 2em;border:0;border-radius:5px;}
     </style>
 </head>
 <body>
-    <form method="post" class="center-form">
-        <div>
-            <label>性別:</label>
-            <select name="sex">
-                <option value="male">男性</option>
-                <option value="female">女性</option>
-            </select>
-        </div>
-        <div>
-            <label>身長(cm):</label>
-            <input type="number" name="height" required>
-        </div>
-        <div>
-            <label>体重(kg):</label>
-            <input type="number" name="weight" required>
-        </div>
-        <div>
-            <label>年齢:</label>
-            <input type="number" name="age" required>
-        </div>
-        <div>
-            <label>目標:</label>
-            <select name="goal">
-                <option value="macho">マッチョ</option>
-                <option value="fitmacho">細マッチョ</option>
-                <option value="fat">デブ</option>
-            </select>
-        </div>
-        <div>
-            <input type="submit" value="計算">
-        </div>
+    <form method="post">
+        <label>性別:</label>
+        <select name="sex">
+            <option value="male">男性</option>
+            <option value="female">女性</option>
+        </select><br>
+        <label>身長(cm):</label> <input type="number" name="height" required><br>
+        <label>体重(kg):</label> <input type="number" name="weight" required><br>
+        <label>年齢:</label>   <input type="number" name="age" required><br>
+        <label>目標:</label>
+        <select name="goal">
+            <option value="macho">マッチョ</option>
+            <option value="fitmacho">細マッチョ</option>
+            <option value="fat">デブ</option>
+        </select><br>
+        <input type="submit" value="計算">
     </form>
 </body>
 </html>
