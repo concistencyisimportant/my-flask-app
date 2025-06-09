@@ -1,5 +1,9 @@
+from flask import Flask, render_template, request
+
+app = Flask(__name__)
+
 def generate_diet_plan(sex, height, weight, age, goal):
-    # ...（カロリー計算部分は省略、あなたのロジックを使ってOK）
+    # ここにあなたの今のロジックをペースト
     days = ["月", "火", "水", "木", "金", "土", "日"]
     breakfasts = [
         "オートミールと卵",
@@ -28,7 +32,6 @@ def generate_diet_plan(sex, height, weight, age, goal):
         "ハンバーグ・温野菜",
         "タラのムニエル"
     ]
-
     week_menu = []
     for i in range(7):
         week_menu.append({
@@ -38,9 +41,25 @@ def generate_diet_plan(sex, height, weight, age, goal):
             "dinner": dinners[i]
         })
     return {
-        "calorie": 2500, # 計算に差し替えて
+        "calorie": 2500, # 計算等に変更OK
         "protein": 150,
         "fat": 50,
         "carb": 350,
         "week_menu": week_menu
     }
+
+@app.route("/", methods=["GET", "POST"])
+def index():
+    if request.method == "POST":
+        sex = request.form["sex"]
+        height = float(request.form["height"])
+        weight = float(request.form["weight"])
+        age = int(request.form["age"])
+        goal = request.form["goal"]
+        schedule = generate_diet_plan(sex, height, weight, age, goal)
+        return render_template("result.html", schedule=schedule)
+    else:
+        return render_template("form.html")
+
+if __name__ == "__main__":
+    app.run(debug=True)
