@@ -3,19 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <title>食事プランの結果</title>
+    <style>
+        body {
+            background: #000;
+            color: #fff;
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .center-box {
+            text-align: center;
+            background: rgba(18,18,18,0.96);
+            border-radius: 14px;
+            box-shadow: 0 0 28px #111;
+            padding: 2em 3em;
+        }
+        h1, h2 {
+            margin-top: 0.5em;
+            margin-bottom: 0.5em;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            padding: 0.4em 0;
+            font-size: 1.1em;
+        }
+        a {
+            display: inline-block;
+            padding: 0.6em 2em;
+            margin-top: 1.2em;
+            text-decoration: none;
+            color: #fff;
+            background: #1a7dd7;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: background 0.26s;
+        }
+        a:hover {
+            background: #125089;
+        }
+    </style>
 </head>
 <body>
-    <h1>あなたの食事プラン</h1>
-    <p>摂取カロリー: {{ schedule.calorie }} kcal</p>
-    <p>たんぱく質: {{ schedule.protein }} g</p>
-    <p>脂質: {{ schedule.fat }} g</p>
-    <p>炭水化物: {{ schedule.carb }} g</p>
-    <h2>食事例</h2>
-    <ul>
-    {% for meal in schedule.meals %}
-      <li>{{ meal.name }} : {{ meal.menu }}</li>
-    {% endfor %}
-    </ul>
-    <a href="/">戻る</a>
+    <div class="center-box">
+        <h1>あなたの食事プラン</h1>
+        <p>摂取カロリー: {{ schedule.calorie }} kcal</p>
+        <p>たんぱく質: {{ schedule.protein }} g</p>
+        <p>脂質: {{ schedule.fat }} g</p>
+        <p>炭水化物: {{ schedule.carb }} g</p>
+        <h2>食事例</h2>
+        <ul>
+        {% for meal in schedule.meals %}
+          <li>{{ meal.name }} : {{ meal.menu }}</li>
+        {% endfor %}
+        </ul>
+        <a href="/">戻る</a>
+    </div>
 </body>
 </html>
