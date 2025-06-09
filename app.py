@@ -1,5 +1,3 @@
-
-# app.py
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
@@ -7,35 +5,16 @@ app = Flask(__name__)
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
-        # 入力データの取得
         sex = request.form["sex"]
         height = float(request.form["height"])
         weight = float(request.form["weight"])
         age = int(request.form["age"])
         goal = request.form["goal"]
-        # 食事プランを計算
         schedule = generate_diet_plan(sex, height, weight, age, goal)
         return render_template("result.html", schedule=schedule)
     else:
         return render_template("form.html")
 
-def generate_diet_plan(sex, height, weight, age, goal):
-    # ここで食事プランを生成（後述）
-    return {
-        "calorie": 2500,
-        "protein": 150,
-        "fat": 50,
-        "carb": 350,
-        # おすすめメニューなど
-        "meals": [
-            {"name": "朝食", "menu":"鶏胸肉と玄米"},
-            {"name": "昼食", "menu":"サラダチキンとさつまいも"},
-            {"name": "夕食", "menu":"牛赤身ステーキとブロッコリー"}
-        ]
-    }
-
-if __name__ == "__main__":
-    app.run(debug=True)
 def generate_diet_plan(sex, height, weight, age, goal):
     # 基礎代謝計算
     if sex == "male":
@@ -43,30 +22,45 @@ def generate_diet_plan(sex, height, weight, age, goal):
     else:
         bmr = 9.247*weight + 3.098*height - 4.330*age + 447.593
 
-    # 総消費カロリーは仮に1.5倍
     tdee = bmr * 1.5
 
-    # 目標によるカロリーバランス
     if goal == "macho":
         calorie = tdee + 400
         protein = int(weight * 2.0)
+        meals = [
+            {"name": "朝食", "menu": "オートミール・スクランブルエッグ・プロテインドリンク"},
+            {"name": "昼食", "menu": "鶏胸肉・ブロッコリー・さつまいも・サラダ"},
+            {"name": "夕食", "menu": "牛赤身ステーキ・玄米・温野菜"}
+        ]
     elif goal == "fitmacho":
         calorie = tdee + 100
         protein = int(weight * 1.5)
+        meals = [
+            {"name": "朝食", "menu": "ヨーグルト・バナナ・ゆで卵"},
+            {"name": "昼食", "menu": "サラダチキン・オートミール・ミニトマト"},
+            {"name": "夕食", "menu": "アジの塩焼き・玄米・味噌汁"}
+        ]
     elif goal == "fat":
         calorie = tdee + 700
         protein = int(weight * 1.2)
+        meals = [
+            {"name": "朝食", "menu": "トースト・ハムエッグ・牛乳"},
+            {"name": "昼食", "menu": "豚カツ定食"},
+            {"name": "夕食", "menu": "ハンバーグ・ライス・サラダ"}
+        ]
     else:
         calorie = tdee
         protein = int(weight)
+        meals = [
+            {"name": "朝食", "menu": "おにぎり・味噌汁・納豆"},
+            {"name": "昼食", "menu": "焼き魚定食"},
+            {"name": "夕食", "menu": "鶏の照り焼き・ごはん・野菜炒め"}
+        ]
     
     fat = int((calorie * 0.25) / 9)
     carb = int((calorie - (protein*4 + fat*9)) / 4)
 
-    # サンプルメニューはご自由に
-    meals = [
-        {"name": "朝食", "menu":"○○○"},
-        {"name": "昼食", "menu":"△△△"},
-        {"name": "夕食", "menu":"□□□"}
-    ]
     return {"calorie": int(calorie), "protein": protein, "fat": fat, "carb": carb, "meals": meals}
+
+if __name__ == "__main__":
+    app.run(debug=True)
