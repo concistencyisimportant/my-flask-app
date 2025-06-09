@@ -1,8 +1,21 @@
-<p>目標カロリー: {{ schedule.calorie }} kcal</p>
-<p>たんぱく質: {{ schedule.protein }}g / 脂質: {{ schedule.fat }}g / 炭水化物: {{ schedule.carb }}g</p>
-<ul>
-{% for meal in schedule.meals %}
-    <li>{{ meal.name }}: {{ meal.menu }}</li>
-{% endfor %}
-</ul>
-<a href="/">戻る</a>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>食事プランの結果</title>
+</head>
+<body>
+    <h1>あなたの食事プラン</h1>
+    <p>摂取カロリー: {{ schedule.calorie }} kcal</p>
+    <p>たんぱく質: {{ schedule.protein }} g</p>
+    <p>脂質: {{ schedule.fat }} g</p>
+    <p>炭水化物: {{ schedule.carb }} g</p>
+    <h2>食事例</h2>
+    <ul>
+    {% for meal in schedule.meals %}
+      <li>{{ meal.name }} : {{ meal.menu }}</li>
+    {% endfor %}
+    </ul>
+    <a href="/">戻る</a>
+</body>
+</html>
