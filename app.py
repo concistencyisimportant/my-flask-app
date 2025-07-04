@@ -52,12 +52,12 @@ def calculate_target_calories(sex, height, weight, age, goal):
     else:
         bmr = 447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age)
     tdee = bmr * 1.55  # (普通の活動レベルで固定)
-    if goal == "維持":
+    if goal == "細マッチョ":
         return int(tdee)
-    elif goal == "減量":
-        return int(tdee - 300)
-    elif goal == "増量":
+    elif goal == "マッチョ":
         return int(tdee + 300)
+    elif goal == "デブ":
+        return int(tdee + 600)
     return int(tdee)
 
 # カロリー自動取得（API）
