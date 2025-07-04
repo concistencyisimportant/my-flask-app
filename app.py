@@ -65,8 +65,8 @@ def get_calorie(menu_jp):
     menu_en = menu_jp_to_en.get(menu_jp, menu_jp)
     url = "https://trackapi.nutritionix.com/v2/natural/nutrients"
     headers = {
-        "x-app-id": API_ID,
-        "x-app-key": API_KEY,
+        "x-app-id": "4c93f79a",
+        "x-app-key": "50ba46ef8f489d4dcca50d21431bc29a",
         "Content-Type": "application/json"
     }
     data = {"query": menu_en}
