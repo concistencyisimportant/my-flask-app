@@ -1,33 +1,90 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <title>食事プラン計算フォーム</title>
-    <style>
-        body { background: #000; color: #fff; min-height: 100vh; display: flex; align-items: center; justify-content: center;}
-        form { background: #222; padding: 2em 3em; border-radius: 14px;}
-        label { display: inline-block; width: 7em; }
-        input, select { margin-bottom: 10px; background: #fff; color: #222;}
-        input[type=submit]{background:#17a2b8;color:#fff;padding:6px 2em;border:0;border-radius:5px;}
-    </style>
+  <meta charset="UTF-8">
+  <title>1週間の食事プラン計算</title>
+  <style>
+    body {
+      background: #101010;
+      color: #fff;
+      font-family: "Meiryo", sans-serif;
+      height: 100vh;
+      margin: 0;
+    }
+    .center-box {
+      background: #222;
+      padding: 40px 50px;
+      border-radius: 20px;
+      margin: 10% auto 0 auto;
+      width: 370px;
+      box-shadow: 0 4px 24px 0 rgba(0,0,0,0.30);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .center-box label {
+      margin-bottom: 10px;
+      display: block;
+    }
+    .center-box select, .center-box input {
+      margin-bottom: 16px;
+      font-size: 16px;
+      padding: 5px;
+      border-radius: 3px;
+      border: none;
+      width: 170px;
+    }
+    .center-box button {
+      background: #17a2b8;
+      border: none;
+      border-radius: 4px;
+      color: #fff;
+      font-size: 18px;
+      padding: 6px 40px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+    .center-box button:hover {
+      background: #138496;
+    }
+    .label-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+    .label-row label { width: 100px;}
+  </style>
 </head>
 <body>
-    <form method="post">
-        <label>性別:</label>
-        <select name="sex">
-            <option value="male">男性</option>
-            <option value="female">女性</option>
-        </select><br>
-        <label>身長(cm):</label> <input type="number" name="height" required><br>
-        <label>体重(kg):</label> <input type="number" name="weight" required><br>
-        <label>年齢:</label>   <input type="number" name="age" required><br>
-        <label>目標:</label>
-        <select name="goal">
-            <option value="macho">マッチョ</option>
-            <option value="fitmacho">細マッチョ</option>
-            <option value="fat">デブ</option>
-        </select><br>
-        <input type="submit" value="計算">
-    </form>
+  <form class="center-box" method="post">
+    <div class="label-row">
+      <label>性別:</label>
+      <select name="sex">
+        <option value="male">男性</option>
+        <option value="female">女性</option>
+      </select>
+    </div>
+    <div class="label-row">
+      <label>身長(cm):</label>
+      <input name="height" type="number" required>
+    </div>
+    <div class="label-row">
+      <label>体重(kg):</label>
+      <input name="weight" type="number" required>
+    </div>
+    <div class="label-row">
+      <label>年齢:</label>
+      <input name="age" type="number" required>
+    </div>
+    <div class="label-row">
+      <label>目標:</label>
+      <select name="goal">
+        <option value="マッチョ">マッチョ</option>
+        <option value="細マッチョ">細マッチョ</option>
+        <option value="デブ">デブ</option>
+      </select>
+    </div>
+    <button type="submit">計算</button>
+  </form>
 </body>
 </html>
