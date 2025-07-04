@@ -10,13 +10,16 @@
       font-family: "Meiryo", sans-serif;
       height: 100vh;
       margin: 0;
+      /* ここから中央寄せ */
+      display: flex;
+      align-items: center;      /* 縦中央 */
+      justify-content: center;  /* 横中央 */
+      min-height: 100vh;
     }
     .center-box {
       background: #222;
       padding: 40px 50px;
       border-radius: 20px;
-      margin: 10% auto 0 auto;
-      width: 370px;
       box-shadow: 0 4px 24px 0 rgba(0,0,0,0.30);
       display: flex;
       flex-direction: column;
